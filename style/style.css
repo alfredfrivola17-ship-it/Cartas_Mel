@@ -1,97 +1,99 @@
-body{
-    margin:0;
-    padding:0;
+/* --- TUS ESTILOS EXISTENTES SE MANTIENEN --- */
 
-    display:flex;
-    justify-content:center;
-    align-items:center;
-
-    min-height:100vh;
-
-    background:linear-gradient(135deg,#ffffff,#ffd9ec);
-
-    font-family:Georgia, "Times New Roman", serif;
+body {
+    margin: 0;
+    padding: 40px 0; /* Agregamos padding arriba/abajo para dar espacio al scroll */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #ffffff, #ffd9ec);
+    font-family: Georgia, "Times New Roman", serif;
 }
 
-.carta{
-
-    width:700px;
-    max-width:90%;
-
-    background:rgb(100, 4, 95);
-
-    padding:45px;
-
-    border-radius:20px;
-
-    box-shadow:0 15px 40px rgba(0,0,0,.20);
-
-    animation:entrada 1.2s ease;
-
+.carta {
+    width: 700px;
+    max-width: 90%;
+    background: rgb(100, 4, 95);
+    padding: 45px;
+    border-radius: 20px;
+    box-shadow: 0 15px 40px rgba(0,0,0,.20);
+    animation: entrada 1.2s ease;
+    box-sizing: border-box;
 }
 
-h1{
-
-    text-align:center;
-
-    color:#ffedfe;
-
-    margin-bottom:35px;
-
-    font-size:38px;
-
+h1 {
+    text-align: center;
+    color: #ffedfe;
+    margin-bottom: 35px;
+    font-size: 38px;
 }
 
-p{
-
-    color:#e4e1e1;
-
-    font-size:22px;
-
-    line-height:1.8;
-
-    text-align:justify;
-
+p {
+    color: #e4e1e1;
+    font-size: 22px;
+    line-height: 1.8;
+    text-align: justify;
 }
 
-h3{
-
-    margin-top:45px;
-
-    text-align:right;
-
-    color:#eeeaff;
-
-    font-size:26px;
-
+h3 {
+    margin-top: 45px;
+    text-align: right;
+    color: #eeeaff;
+    font-size: 26px;
 }
 
-.fecha{
-
-    text-align:right;
-
-    color:#c9c7c7;
-
-    font-size:18px;
-
+.fecha {
+    text-align: right;
+    color: #c9c7c7;
+    font-size: 18px;
 }
 
-@keyframes entrada{
-
-    from{
-
-        opacity:0;
-
-        transform:translateY(40px);
-
+@keyframes entrada {
+    from {
+        opacity: 0;
+        transform: translateY(40px);
     }
-
-    to{
-
-        opacity:1;
-
-        transform:translateY(0);
-
+    to {
+        opacity: 1;
+        transform: translateY(0);
     }
+}
 
+
+/* ==========================================
+   NUEVO: ESTILOS PARA LAS FLORES AL HACER SCROLL
+   ========================================== */
+
+.flor {
+    display: block;
+    max-width: 120px; /* Tamaño de la flor */
+    height: auto;
+    margin: 30px auto;
+    
+    /* Estado inicial: Invisible y desplazada hacia abajo */
+    opacity: 0;
+    transform: translateY(50px) scale(0.8);
+    
+    /* Animación suave cuando cambia de estado */
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+/* Alineaciones opcionales */
+.flor-izquierda {
+    margin-left: 10%;
+}
+
+.flor-derecha {
+    margin-right: 10%;
+}
+
+.flor-centro {
+    margin: 30px auto;
+}
+
+/* Estado cuando la flor entra en pantalla (se activa mediante JS) */
+.flor.visible {
+    opacity: 1;
+    transform: translateY(0) scale(1);
 }
