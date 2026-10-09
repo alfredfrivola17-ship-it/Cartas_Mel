@@ -1,51 +1,106 @@
-/* --- TUS ESTILOS EXISTENTES SE MANTIENEN --- */
-
 body {
     margin: 0;
-    padding: 40px 0; /* Agregamos padding arriba/abajo para dar espacio al scroll */
+    padding: 40px 0;
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background: linear-gradient(135deg, #ffffff, #ffd9ec);
+    background: linear-gradient(135deg,#BC3A54, #600105);
     font-family: Georgia, "Times New Roman", serif;
 }
 
 .carta {
-    width: 700px;
+    width: 900px; /* Hacemos la carta un poco más ancha para que quepan bien la foto y el texto juntos */
     max-width: 90%;
-    background: rgb(100, 4, 95);
+    background: #F1E0D9;
     padding: 45px;
     border-radius: 20px;
-    box-shadow: 0 15px 40px rgba(0,0,0,.20);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
     animation: entrada 1.2s ease;
     box-sizing: border-box;
 }
 
 h1 {
     text-align: center;
-    color: #ffedfe;
-    margin-bottom: 35px;
+    color: #E44762;
+    margin-bottom: 40px;
     font-size: 38px;
 }
 
-p {
-    color: #e4e1e1;
-    font-size: 22px;
-    line-height: 1.8;
-    text-align: justify;
+/* --- ESTRUCTURA ZIGZAG (FLEXBOX) --- */
+
+.bloque {
+    display: flex;
+    align-items: center; /* Alinea verticalmente al centro */
+    gap: 30px; /* Espacio entre el texto y la imagen */
+    margin-bottom: 40px;
 }
+
+/* Para alternar los lados (Foto a la izquierda, Texto a la derecha) */
+.bloque.inverso {
+    flex-direction: row-reverse;
+}
+
+/* Ajustes de tamaño del texto y la foto dentro del bloque */
+.bloque .texto {
+    flex: 1; /* Toma el 50% del espacio */
+}
+
+.bloque .imagen {
+    flex: 1; /* Toma el 50% del espacio */
+    display: flex;
+    justify-content: center;
+}
+
+.bloque p {
+    color: #600105;
+    font-size: 24px; /* Ajustamos un poco el tamaño para que encaje bien en su columna */
+    line-height: 1.6;
+    text-align: justify;
+    margin: 0;
+}
+/* Estilo para la frase destacada */
+.texto .destacado {
+   /* display: block;        /* Hace que la frase tome su propia línea (como un título) */
+    font-size: 28px;       /* Tamaño más grande que el párrafo normal */
+    font-weight: bold;     /* En negrita */
+    color: #600105;      
+    /*margin-bottom: 10px;   /* Un pequeño espacio hacia el texto de abajo */
+    font-style: italic;    /* OPCIONAL: le da un toque elegante en cursiva */
+}
+.bloque .imagen img {
+    width: 100%;
+    max-width: 320px; /* Ancho máximo de las imágenes/fotos */
+    border-radius: 15px; /* Esquinas redondeadas para las fotos */
+    object-fit: cover;
+    box-shadow: 0 8px 20px #DB5F7B; /* Sombra elegante */
+}
+
+/* --- ANIMACIÓN AL HACER SCROLL (JS) --- */
+
+.flor {
+    opacity: 0;
+    transform: translateY(40px) scale(0.9);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.flor.visible {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+}
+
+/* --- PIE DE PÁGINA --- */
 
 h3 {
     margin-top: 45px;
     text-align: right;
-    color: #eeeaff;
+    color: #E44762;
     font-size: 26px;
 }
 
 .fecha {
     text-align: right;
-    color: #c9c7c7;
+    color: #600105;
     font-size: 18px;
 }
 
@@ -60,40 +115,9 @@ h3 {
     }
 }
 
-
-/* ==========================================
-   NUEVO: ESTILOS PARA LAS FLORES AL HACER SCROLL
-   ========================================== */
-
-.flor {
-    display: block;
-    max-width: 120px; /* Tamaño de la flor */
-    height: auto;
-    margin: 30px auto;
-    
-    /* Estado inicial: Invisible y desplazada hacia abajo */
-    opacity: 0;
-    transform: translateY(50px) scale(0.8);
-    
-    /* Animación suave cuando cambia de estado */
-    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-}
-
-/* Alineaciones opcionales */
-.flor-izquierda {
-    margin-left: 10%;
-}
-
-.flor-derecha {
-    margin-right: 10%;
-}
-
-.flor-centro {
-    margin: 30px auto;
-}
-
-/* Estado cuando la flor entra en pantalla (se activa mediante JS) */
-.flor.visible {
-    opacity: 1;
-    transform: translateY(0) scale(1);
+/* --- ADAPTABILIDAD A TELÉFONOS (RESPONSIVE) --- */
+@media (max-width: 768px) {
+    .bloque, .bloque.inverso {
+        flex-direction: column; /* En pantallas pequeñas se acomodan uno arriba del otro */
+    }
 }
